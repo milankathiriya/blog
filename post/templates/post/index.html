@@ -6,9 +6,9 @@
 
 {% block content %}
 
-<div class="container">
+{% comment %} <div class="container">
     <img src="{% static 'panda.jpg' %}" alt="static image of panda" width="800" height="200">
-</div>
+</div> {% endcomment %}
 
     {% if request.user.is_authenticated %}
         <div class="container mt-5">
@@ -21,7 +21,7 @@
         <div class="container mt-5">
             {% for p in posts %}
             
-                <div class="card mb-3" style="width: 750px;">
+                <div class="card mb-3 col-sm-auto col-lg-8">
                     <div class="card-body">
                         <h4><a class="text-blue card-link" href="{% url 'post_detail' p.id %}">{{ p.title }}</a></h4>
                         <div class="mb-1 text-muted">- posted by {{ p.author }}</div>

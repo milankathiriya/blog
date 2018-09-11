@@ -16,7 +16,7 @@ SECRET_KEY = 'x!^k=88$$h55sym0)2j&8iunf_es+b38&=0a-qu7=!3pp($ruw'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['milanblog.herokuapp.com', 'https://milanblog.herokuapp.com/', 'http://milanblog.herokuapp.com/']
+ALLOWED_HOSTS = ['localhost', 'milanblog.herokuapp.com', 'https://milanblog.herokuapp.com/', 'http://milanblog.herokuapp.com/']
 
 
 # Application definition
@@ -135,7 +135,7 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # For Heroku
-import dj_database_url
-DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True)
+# import dj_database_url
+# DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True)
 
-django_heroku.settings(locals())
+# django_heroku.settings(locals())
