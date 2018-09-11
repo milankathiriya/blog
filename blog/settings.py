@@ -14,7 +14,7 @@ TEMPLATE_DIR = os.path.join(BASE_DIR, 'templates')
 SECRET_KEY = 'x!^k=88$$h55sym0)2j&8iunf_es+b38&=0a-qu7=!3pp($ruw'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['milanblog.herokuapp.com']
 
