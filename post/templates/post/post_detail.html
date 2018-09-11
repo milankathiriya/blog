@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    {% if pd %}
+        <div class="container mt-5">
+                <div class="card mb-5">
+                    <div class="card-body">
+                        <h4>{{ pd.title }}</h4>
+                        <div class="mb-1 text-muted">- posted by {{ pd.author }}</div>
+                        <img class="card-img" src="{{ pd.image.url }}" alt="pic"> <br> <hr>
+                        <p class="card-text mb-auto">{{ pd.description }}
+                        <div class="mb-1 text-muted text-right">- created at {{ pd.created_at }}</div>
+                        <div class="mb-1 text-muted text-right">- updated at {{ pd.updated_at }}</div>
+
+                        {% if request.user.is_authenticated and request.user == pd.author %}
+                            <a class="btn btn-warning" href="{% url 'post_update' pd.id %}">Update</a>
+                            <a class="btn btn-danger" href="{% url 'post_delete' pd.id %}">Delete</a>
+                        {% endif %}
+                    </div>
+                </div>
+        </div>
+    {% endif %}
+
+{% endblock content %}

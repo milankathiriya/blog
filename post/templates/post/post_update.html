@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+<div class="container mt-5">
+    
+    {% if error %}
+    <div class="alert alert-danger" role="alert">
+        {{ error }}
+    </div>
+    {% endif %}
+    
+    <form action="" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <table class="table table-borderless table-responsive">
+            {{ form|crispy }}
+        </table> <br>
+        {% if not error %}
+        <input class="btn btn-warning" type="submit" value="Update">
+        {% endif %}
+    </form>
+</div>
+
+{% endblock content %}
