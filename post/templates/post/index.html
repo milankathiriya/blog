@@ -1,6 +1,14 @@
 {% extends "base.html" %}
 
+{% load static %}
+
+
+
 {% block content %}
+
+<div class="container">
+    <img src="{% static 'panda.jpg' %}" alt="static image of panda" width="800" height="200">
+</div>
 
     {% if request.user.is_authenticated %}
         <div class="container mt-5">
