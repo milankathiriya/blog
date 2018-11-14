@@ -13,7 +13,7 @@ def home(request):
     paginator = Paginator(posts, 3) # < 3 is the number of items on each page
     page = request.GET.get('page') # < Get the page number
     posts = paginator.get_page(page) # < New in 2.0!
-
+    
     context = {
         'posts': posts,
     }
@@ -28,18 +28,18 @@ def post_detail(request, id=None):
     return render(request, 'post/post_detail.html', context)
 
 
-@login_required
+@login_required(login_url='login')
 def post_update(request, id=None):
     pd = get_object_or_404(Post, id=id)
-    print(f'from func {pd.author}')
+    print(f'from author {pd.author}')
     if request.user == pd.author:
         if request.method == 'POST':
-            form = PostForm(request.POST, request.FILES, instance=pd)
+            form = PostForm(request.POST or None, request.FILES or None, instance=pd)
             if form.is_valid:
                 form.save()
                 return redirect('post_detail', id=id)
         else:
-            form = PostForm()
+            form = PostForm(request.GET or None, request.FILES or None, instance=pd)
 
         context = {
             'form': form,
@@ -49,14 +49,14 @@ def post_update(request, id=None):
     return render(request, 'post/post_update.html', context)
 
 
-@login_required
+@login_required(login_url='login')
 def post_delete(request, id=None):
     pd = get_object_or_404(Post, id=id)
     pd.delete()
     return redirect('home')
 
 
-@login_required
+@login_required(login_url='login')
 def create_post(request):
     if request.method == 'POST':
         form = PostForm(request.POST or None, request.FILES or None)

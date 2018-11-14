@@ -30,6 +30,10 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'crispy_forms',
+    'rest_framework',
+    'rest_framework.authtoken',
+    'rest_auth',
+    'rest_framework_swagger',
 
     'post',
     'user',
@@ -126,6 +130,8 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 LOGIN_REDIRECT_URL = 'home'
 LOGOUT_REDIRECT_URL = 'home'
+LOGIN_URL = 'rest_framework:login'
+LOGOUT_URL = 'rest_framework:logout'
 
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
@@ -133,6 +139,42 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 # Simplified static file serving.
 # https://warehouse.python.org/project/whitenoise/
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.TokenAuthentication',
+    ),
+    'DEFAULT_PERMISSION_CLASSES': [
+        # 'rest_framework.authentication.BasicAuthentication',
+        # 'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly',
+    ],
+    'DEFAULT_PARSER_CLASSES': [
+        'rest_framework.parsers.FormParser',
+        'rest_framework.parsers.MultiPartParser',
+        'rest_framework.parsers.JSONParser',
+    ],
+}
+
+
+SWAGGER_SETTINGS = {
+    'USE_SESSION_AUTH': True,
+    'JSON_EDITOR': True,
+    'SECURITY_DEFINITIONS': {
+        'basic': {
+            'type': 'basic'
+        },
+        'Token Authentication': {
+            'type': 'apiKey',
+            'description': 'Example value. Token ac8bfe1ee265c14861b06a4c7ff4a3d9d04c9a1f12d3',
+            'name': 'Authorization',
+            'in': 'header',
+        }
+    },
+}
+
 
 # For Heroku
 # import dj_database_url

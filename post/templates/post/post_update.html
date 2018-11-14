@@ -6,9 +6,9 @@
 <div class="container mt-5">
     
     {% if error %}
-    <div class="alert alert-danger" role="alert">
-        {{ error }}
-    </div>
+        <div class="alert alert-danger" role="alert">
+            {{ error }}
+        </div>
     {% endif %}
     
     <form action="" method="POST" enctype="multipart/form-data">
@@ -17,7 +17,7 @@
             {{ form|crispy }}
         </table> <br>
         {% if not error %}
-        <input class="btn btn-warning" type="submit" value="Update">
+            <input class="btn btn-warning mb-5" type="submit" value="Update">
         {% endif %}
     </form>
 </div>

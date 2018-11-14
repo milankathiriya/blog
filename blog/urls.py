@@ -17,11 +17,25 @@ from django.contrib import admin
 from django.urls import include, path
 from django.conf.urls.static import static
 from django.conf import settings
+from rest_framework.schemas import get_schema_view
+from rest_framework_swagger.views import get_swagger_view
+from rest_framework.authtoken import views as rest_framework_views
+
+schema_view = get_swagger_view(title='Blog API')
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('post.urls')),
     path('user/', include('user.urls')),
+
+    path('api/', include('post.api.urls')),
+
+    path('api-auth/', include('rest_framework.urls')),
+
+    path('rest-auth/', include('rest_auth.urls')),
+
+    path('myapi/', schema_view),
 ]
 
 
